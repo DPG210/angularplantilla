@@ -1,6 +1,6 @@
 export class Plantilla{
     constructor(
-        public idPlantilla: number,
+        public idEmpleado: number,
         public idHospital:number,
         public IdSala:number,
         public apellido:string,

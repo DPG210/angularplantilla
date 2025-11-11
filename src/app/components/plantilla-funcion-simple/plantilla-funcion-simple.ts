@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild,ElementRef } from '@angular/core';
 import { ServicesFunciones } from '../../service/services.funciones';
 import { FormsModule } from '@angular/forms';
+import { Plantilla } from '../../models/plantilla';
 
 @Component({
   selector: 'app-plantilla-funcion-simple',
@@ -9,24 +10,28 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './plantilla-funcion-simple.css',
 })
 export class PlantillaFuncionSimple implements OnInit{
-    public funciones!: Array<any>;
-    public plantilla!:Array<any>;
-    @ViewChild ("selectfuncion") selectfuncion!: ElementRef;
+    public funciones!: Array<string>;
+    public plantilla!:Array<Plantilla>;
+    @ViewChild ("selectfuncion") selectFunction!: ElementRef;
 
     constructor(private _service: ServicesFunciones){}
 
     ngOnInit(): void {
       this._service.getFunciones().subscribe(response=>{
         this.funciones=response;
-        console.log(this.funciones);
+        
       })
     }
 
     mostrarPlantilla():void{
-      let funcion= this.selectfuncion.nativeElement.value;
+      let funcion= this.selectFunction.nativeElement.value;
 
-      this._service.getPlantilla(funcion).subscribe(response=>{
-        this.plantilla=response;
-      })
+      // this._service.getPlantillaFetch(funcion).then(response=>{
+      //   this.plantilla=response;
+      // CON FETCH
+      
+       this._service.getPlantillaTipado(funcion).subscribe(response=>{
+       this.plantilla=response;
+        })//CON HTTP
     }
 }
