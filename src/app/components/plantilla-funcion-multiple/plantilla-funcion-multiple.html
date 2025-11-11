@@ -1,13 +1,14 @@
 <div>
     <h1>Api plantilla funcion multiple</h1>
     <form #plantillaForm="ngForm">
-        <select #selectfuncion name="selectfuncion">
+        <select #selectfunciones name="selectfunciones" multiple size="5">
             @for(funcion of funciones; track funcion){
             <option>{{funcion}}</option>
             }
         </select>
         <button (click)="mostrarPlantilla()">Mostrar Plantilla</button>
     </form>
+
     <table>
         <thead>
             <tr>
@@ -33,8 +34,9 @@
                 <td>{{persona.salario}}</td>
             </tr>
             }
-
         </tbody>
     </table>
+
+
 
 </div>

@@ -9,12 +9,16 @@ import { Plantilla } from '../../models/plantilla';
   templateUrl: './plantilla-funcion-multiple.html',
   styleUrl: './plantilla-funcion-multiple.css',
 })
-export class PlantillaFuncionMultiple {
-  public funciones!: Array<string>;
-    public plantilla!:Array<Plantilla>;
-    @ViewChild ("selectfuncion") selectFunction!: ElementRef;
+export class PlantillaFuncionMultiple implements OnInit{
+    public funciones!: Array<string>;
+    public plantilla:Array<Plantilla>;
+    @ViewChild ("selectfunciones") selectFunctiones!: ElementRef;
+    public funcionesSeleccionadas: Array<string>;
 
-    constructor(private _service: ServicesFunciones){}
+    constructor(private _service: ServicesFunciones){
+      this.plantilla= new Array <Plantilla>;
+      this.funcionesSeleccionadas= new Array<string>;
+    }
 
     ngOnInit(): void {
       this._service.getFunciones().subscribe(response=>{
@@ -23,17 +27,19 @@ export class PlantillaFuncionMultiple {
       })
     }
 
-    
+
 
     mostrarPlantilla():void{
-      let funcion= this.selectFunction.nativeElement.value;
+      let aux= new Array<string>();
+      for(var option of this.selectFunctiones.nativeElement.options){
+        if(option.selected== true){
+          aux.push(option.value);
+        }
+      }
+      this.funcionesSeleccionadas=aux;
 
-      // this._service.getPlantillaFetch(funcion).then(response=>{
-      //   this.plantilla=response;
-      // CON FETCH
-      
-       this._service.getPlantillaTipado(funcion).subscribe(response=>{
+       this._service.getPlantillaFunciones(aux).subscribe(response=>{
        this.plantilla=response;
-        })//CON HTTP
+        })
     }
 }
