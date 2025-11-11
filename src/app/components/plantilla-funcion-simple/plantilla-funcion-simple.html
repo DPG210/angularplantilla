@@ -1,0 +1,40 @@
+<div>
+    <h1>Api plantilla funcion simple</h1>
+    <form #plantillaForm="ngForm">
+        <select #selectfuncion name="selectfuncion">
+            @for(funcion of funciones; track funcion){
+            <option>{{funcion}}</option>
+            }
+        </select>
+        <button (click)="mostrarPlantilla()">Mostrar Plantilla</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Hospital</th>
+                <th>Sala</th>
+                <th>Apellido</th>
+                <th>Funcion</th>
+                <th>Turno</th>
+                <th>Salario</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @for(persona of plantilla; track persona){
+            <tr>
+                <td>{{persona.idPlantilla}}</td>
+                <td>{{persona.idHospital}}</td>
+                <td>{{persona.idSala}}</td>
+                <td>{{persona.apellido}}</td>
+                <td>{{persona.funcion}}</td>
+                <td>{{persona.turno}}</td>
+                <td>{{persona.salario}}</td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
