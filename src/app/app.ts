@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PlantillaFuncionSimple } from './components/plantilla-funcion-simple/plantilla-funcion-simple';
+import { MenuPlantillas } from './components/menu-plantillas/menu-plantillas';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PlantillaFuncionSimple],
+  imports: [RouterOutlet, MenuPlantillas],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
